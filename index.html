@@ -14,6 +14,9 @@
     --accent: #2f6fde;
     --accent-hover: #2459b8;
     --accent-text: #ffffff;
+    --warn: #9a5b00;
+    --warn-bg: #fff4e0;
+    --warn-border: #f3d29a;
 }
 @media (prefers-color-scheme: dark) {
     :root {
@@ -25,6 +28,9 @@
         --accent: #4c8bf5;
         --accent-hover: #6a9ff7;
         --accent-text: #0d1117;
+        --warn: #f0b860;
+        --warn-bg: #2e2416;
+        --warn-border: #5a4320;
     }
 }
 * { box-sizing: border-box; }
@@ -51,6 +57,26 @@ h1 {
     margin: 0;
     font-size: 28px;
     letter-spacing: -0.02em;
+}
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.github {
+    display: flex;
+    color: var(--muted);
+    transition: color .15s;
+}
+.github:hover { color: var(--text); }
+.github:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 50%;
+}
+.github svg {
+    width: 26px;
+    height: 26px;
 }
 #search {
     width: 100%;
@@ -108,6 +134,16 @@ h2 {
     font-size: 12px;
     font-variant-numeric: tabular-nums;
 }
+.experimental {
+    flex-shrink: 0;
+    padding: 1px 8px;
+    border: 1px solid var(--warn-border);
+    border-radius: 999px;
+    background: var(--warn-bg);
+    color: var(--warn);
+    font-size: 12px;
+    font-weight: 600;
+}
 .author {
     margin: 2px 0 10px;
     color: var(--muted);
@@ -147,6 +183,7 @@ h2 {
 }
 @media (max-width: 600px) {
     main { padding-top: 24px; }
+    .actions { width: 100%; }
     #search { max-width: none; }
     .card { gap: 14px; padding: 16px; }
 }
@@ -156,7 +193,12 @@ h2 {
 <main>
     <header>
         <h1>WebODM Plugins</h1>
-        <input id="search" type="search" placeholder="Search plugins" aria-label="Search plugins">
+        <div class="actions">
+            <input id="search" type="search" placeholder="Search plugins" aria-label="Search plugins">
+            <a class="github" href="https://github.com/WebODM/WebODM-Plugins" title="View on GitHub" aria-label="View on GitHub">
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+            </a>
+        </div>
     </header>
     <div id="list"></div>
 </main>
@@ -188,6 +230,7 @@ function render() {
         const top = el("div", "top");
         top.append(el("h2", null, p.name || "Unnamed"));
         if (p.version) top.append(el("span", "version", "v" + p.version));
+        if (p.experimental === true) top.append(el("span", "experimental", "Experimental"));
         info.append(top);
         info.append(el("p", "author", p.author ? "by " + p.author : ""));
         info.append(el("p", "desc", p.description || ""));
