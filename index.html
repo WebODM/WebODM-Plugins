@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebODM Plugins</title>
+<style>
+:root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #1d2330;
+    --muted: #5d6676;
+    --border: #e1e4ea;
+    --accent: #2f6fde;
+    --accent-hover: #2459b8;
+    --accent-text: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #12151b;
+        --card: #1b1f27;
+        --text: #e6e9ef;
+        --muted: #98a1b2;
+        --border: #2a303b;
+        --accent: #4c8bf5;
+        --accent-hover: #6a9ff7;
+        --accent-text: #0d1117;
+    }
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 16px 64px;
+}
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+}
+#search {
+    width: 100%;
+    max-width: 320px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    font: inherit;
+}
+#search:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+}
+#list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color .15s, box-shadow .15s;
+}
+.card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .06);
+}
+.info {
+    flex: 1;
+    min-width: 0;
+}
+.top {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+}
+h2 {
+    margin: 0;
+    font-size: 17px;
+}
+.version {
+    flex-shrink: 0;
+    padding: 1px 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+.author {
+    margin: 2px 0 10px;
+    color: var(--muted);
+    font-size: 13px;
+}
+.desc {
+    margin: 0;
+}
+.download {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--accent-text);
+    transition: background .15s, transform .15s;
+}
+.download:hover { background: var(--accent-hover); }
+.download:hover svg { transform: translateY(1px); }
+.download:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+.download svg {
+    width: 22px;
+    height: 22px;
+    transition: transform .15s;
+}
+.message {
+    grid-column: 1 / -1;
+    padding: 48px 0;
+    color: var(--muted);
+    text-align: center;
+}
+@media (max-width: 600px) {
+    main { padding-top: 24px; }
+    #search { max-width: none; }
+    .card { gap: 14px; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<main>
+    <header>
+        <h1>WebODM Plugins</h1>
+        <input id="search" type="search" placeholder="Search plugins" aria-label="Search plugins">
+    </header>
+    <div id="list"></div>
+</main>
+<script>
+const list = document.getElementById("list");
+const search = document.getElementById("search");
+let plugins = [];
+const icon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M4.5 15.5v2.5a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2.5"/></svg>';
+
+function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+}
+
+function message(text) {
+    list.replaceChildren(el("div", "message", text));
+}
+
+function render() {
+    const q = search.value.trim().toLowerCase();
+    const shown = plugins.filter(p => !q || [p.name, p.description, p.author].join(" ").toLowerCase().includes(q));
+    if (!shown.length) return message("No plugins found.");
+
+    list.replaceChildren(...shown.map(p => {
+        const card = el("article", "card");
+        const info = el("div", "info");
+        const top = el("div", "top");
+        top.append(el("h2", null, p.name || "Unnamed"));
+        if (p.version) top.append(el("span", "version", "v" + p.version));
+        info.append(top);
+        info.append(el("p", "author", p.author ? "by " + p.author : ""));
+        info.append(el("p", "desc", p.description || ""));
+        const a = el("a", "download");
+        a.href = p.url;
+        a.download = "";
+        a.title = "Download " + (p.name || "plugin");
+        a.setAttribute("aria-label", a.title);
+        a.innerHTML = icon;
+        card.append(info, a);
+        return card;
+    }));
+}
+
+search.addEventListener("input", render);
+
+fetch("/index.json")
+    .then(r => {
+        if (!r.ok) throw new Error(r.status + " " + r.statusText);
+        return r.json();
+    })
+    .then(data => {
+        plugins = (data.plugins || []).sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+        render();
+    })
+    .catch(e => {
+        message("Could not load plugin index: " + e.message);
+    });
+</script>
+</body>
+</html>

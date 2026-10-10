@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import hashlib
+import shutil
 import zipfile
 
 root = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
@@ -40,3 +41,6 @@ with open(os.path.join(dist_dir, "index.json"), "w") as f:
     json.dump({"plugins": plugins}, f, indent=4)
 
 print("Wrote %s plugins to %s" % (len(plugins), os.path.join(dist_dir, "index.json")))
+
+shutil.copy(os.path.join(root, "index.html"), os.path.join(dist_dir, "index.html"))
+print("Copied index.html")
