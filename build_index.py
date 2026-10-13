@@ -24,7 +24,7 @@ def read_manifest(path):
 
 plugins = []
 for f in sorted(os.listdir(dist_dir)):
-    if not f.endswith(".zip"):
+    if not f.endswith(".zip") or f.endswith("-prebuilt.zip"):
         continue
     path = os.path.join(dist_dir, f)
     try:
@@ -34,6 +34,9 @@ for f in sorted(os.listdir(dist_dir)):
         sys.exit(1)
     meta["url"] = "/" + f
     meta["sha256"] = sha256(path)
+    prebuilt = f[:-4] + "-prebuilt.zip"
+    if os.path.isfile(os.path.join(dist_dir, prebuilt)):
+        meta["prebuilt_url"] = "/" + prebuilt
     plugins.append(meta)
     print("A\t" + f)
 

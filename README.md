@@ -1,10 +1,12 @@
 # WebODM's Plugin Directory
 
-This is WebODM's plugin directory. Plugins listed here are also listed in WebODM. Browse the index: https://plugins.webodm.org
+This is WebODM's plugin directory. Plugins listed here are also listed in WebODM. 
+
+Browse the directory: https://plugins.webodm.org
 
 ## Contributing a plugin
 
-To build a plugin, see https://docs.webodm.org/plugin-development-guide/. Once your plugin is ready, submit it to our index you have two choices:
+To build a plugin, see https://docs.webodm.org/plugin-development-guide/. Once it's ready, to submit it to the directory you have two choices:
 
 ### In this repository
 

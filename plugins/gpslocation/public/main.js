@@ -1,6 +1,6 @@
 PluginsAPI.Map.willAddControls([
-    	'gpslocation/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.js',
-    	'gpslocation/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css'
+    	'gpslocation/L.Control.Locate.min.js',
+    	'gpslocation/L.Control.Locate.min.css'
 	], function(args, _){
 
     // TODO: how to specify consistent plugin render ordering?

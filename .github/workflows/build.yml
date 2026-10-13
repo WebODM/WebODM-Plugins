@@ -27,11 +27,11 @@ jobs:
       - name: Pull WebODM image
         run: docker pull webodm/webodm_webapp
 
-      - name: Rebuild plugins
-        run: python rebuild_plugins.py
-
       - name: Fetch directory plugins
         run: python fetch_directory.py
+
+      - name: Rebuild plugins
+        run: python rebuild_plugins.py
 
       - name: Build index
         run: python build_index.py

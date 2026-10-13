@@ -1,7 +1,6 @@
 import os
 import sys
 import shutil
-import glob
 import json
 import subprocess
 import zipfile
@@ -9,6 +8,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 root = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
 plugins_dir = os.path.join(root, "plugins")
+external_dir = os.path.join(root, "external")
+build_dir = os.path.join(root, "build")
 dist_dir = os.path.join(root, "dist")
 image = "webodm/webodm_webapp"
 
@@ -26,23 +27,47 @@ def fail(msg):
     print("ERROR: " + msg)
     sys.exit(1)
 
+def ignore(dirpath, names):
+    skip = {"node_modules", "__pycache__"}
+    if os.path.basename(dirpath) == "public":
+        skip.add("build")
+    return [n for n in names if n in skip or n.endswith(".pyc")]
+
 print("Cleaning up...")
 
-if os.path.isdir(dist_dir):
-    shutil.rmtree(dist_dir)
-    print("R\t" + dist_dir)
-
-for folder in ["node_modules", "build"]:
-    for d in glob.glob(os.path.join(plugins_dir, "**", "public", folder)):
+for d in [dist_dir, build_dir]:
+    if os.path.isdir(d):
         shutil.rmtree(d)
         print("R\t" + d)
+
+print("Collecting...")
+
+sources = {}
+for src_dir in [plugins_dir, external_dir]:
+    if not os.path.isdir(src_dir):
+        continue
+    for p in sorted(os.listdir(src_dir)):
+        if not os.path.isfile(os.path.join(src_dir, p, "manifest.json")):
+            continue
+        if p.endswith("-prebuilt"):
+            fail("%s: plugin names cannot end with -prebuilt" % p)
+        if p in sources:
+            fail("%s: defined in both %s and %s" % (p, sources[p], src_dir))
+        sources[p] = src_dir
+
+os.makedirs(build_dir)
+for p, src_dir in sources.items():
+    shutil.copytree(os.path.join(src_dir, p), os.path.join(build_dir, p), ignore=ignore)
+    print("C\t" + os.path.join(src_dir, p))
+
+plugins = sorted(sources)
 
 print("Rebuilding...")
 
 uid_gid = "%s:%s" % (os.getuid(), os.getgid())
 cmd = [
     "docker", "run", "--rm",
-    "-v", plugins_dir + ":/webodm/coreplugins",
+    "-v", build_dir + ":/webodm/coreplugins",
     "--entrypoint", "/bin/bash",
     image,
     "-c", "python manage.py rebuildplugins; rc=$?; chown -R %s /webodm/coreplugins; exit $rc" % uid_gid,
@@ -59,10 +84,8 @@ proc.wait()
 if proc.returncode != 0:
     fail("rebuildplugins exited with code %s" % proc.returncode)
 
-plugins = sorted(p for p in os.listdir(plugins_dir) if os.path.isfile(os.path.join(plugins_dir, p, "manifest.json")))
-
 for p in plugins:
-    public = os.path.join(plugins_dir, p, "public")
+    public = os.path.join(build_dir, p, "public")
     package_json = os.path.join(public, "package.json")
     if os.path.isfile(package_json):
         with open(package_json) as f:
@@ -78,13 +101,16 @@ print("Packaging...")
 
 os.makedirs(dist_dir)
 
-def package(p):
-    src = os.path.join(plugins_dir, p)
-    out = os.path.join(dist_dir, p + ".zip")
+def package(p, prebuilt):
+    src = os.path.join(build_dir, p)
+    out = os.path.join(dist_dir, p + ("-prebuilt.zip" if prebuilt else ".zip"))
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for dirpath, dirnames, filenames in os.walk(src):
-            dirnames[:] = [d for d in dirnames if d != "__pycache__"]
-            rel = os.path.relpath(dirpath, plugins_dir)
+            rel = os.path.relpath(dirpath, build_dir)
+            skip = {"node_modules", "__pycache__"}
+            if not prebuilt and rel == os.path.join(p, "public"):
+                skip.add("build")
+            dirnames[:] = [d for d in dirnames if d not in skip]
             z.write(dirpath, rel)
             for f in filenames:
                 if f.endswith(".pyc"):
@@ -93,7 +119,8 @@ def package(p):
     return out
 
 with ThreadPoolExecutor(max_workers=os.cpu_count()) as ex:
-    for out in ex.map(package, plugins):
-        print("W\t" + out)
+    jobs = [ex.submit(package, p, prebuilt) for p in plugins for prebuilt in (False, True)]
+    for j in jobs:
+        print("W\t" + j.result())
 
 print("Done!")
