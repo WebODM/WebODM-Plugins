@@ -15,7 +15,7 @@ from app.plugins.worker import run_function_async
 from app.plugins import get_current_plugin
 from app.plugins import GlobalDataStore, get_site_settings, signals as plugin_signals
 
-from coreplugins.dronedb.ddb import DEFAULT_HUB_URL, DroneDB, parse_url, verify_url
+from .ddb import DEFAULT_HUB_URL, DroneDB, parse_url, verify_url
 
 from django.dispatch import receiver
 
@@ -399,7 +399,7 @@ def share_to_ddb(pk, settings, files, tag=None, org_slug=None, dataset_name=None
     import os, time
     from app.plugins import logger
     from app.plugins.functions import get_plugin_by_name
-    from coreplugins.dronedb.ddb import DroneDB
+    from plugins.dronedb.ddb import DroneDB
 
     status_key = '{}_ddb'.format(pk)
     datastore = get_plugin_by_name('dronedb').get_global_data_store()

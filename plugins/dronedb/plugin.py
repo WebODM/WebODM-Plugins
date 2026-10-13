@@ -1,6 +1,6 @@
 from app.plugins import PluginBase, Menu, MountPoint, logger
-from coreplugins.dronedb.app_views import LoadButtonsView
-from coreplugins.dronedb.ddb import DEFAULT_HUB_URL
+from .app_views import LoadButtonsView
+from .ddb import DEFAULT_HUB_URL
 
 from .api_views import (
     CheckUrlTaskView,
