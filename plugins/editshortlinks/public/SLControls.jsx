@@ -28,6 +28,14 @@ export default class SLControls extends React.Component{
         };
     }
 
+    setShareLink = (rel) => {
+        const sp = this.props.sharePopup;
+        if (!sp._slOrig) sp._slOrig = sp.getRelShareLink;
+        if (rel) sp.getRelShareLink = (opts = {}) => opts.iframe ? sp._slOrig(opts) : `/${rel}`;
+        else sp.getRelShareLink = sp._slOrig;
+        sp.setState({relShareLink: sp.getRelShareLink()});
+    }
+
     updateRelShareLink = (res, onSuccess = () => {}) => {
         if (res.shortId){
             const linksTarget = this.props.sharePopup.props.linksTarget;
@@ -36,7 +44,7 @@ export default class SLControls extends React.Component{
             const linksTargetChar = linksTarget === '3d' ? '3' : 'm';
     
             const relShareLink = `s${linksTargetChar}/${username}/${shortId}`;
-            this.props.sharePopup.setState({relShareLink});
+            this.setShareLink(relShareLink);
             this.setState({shortId});
             onSuccess();
         }else if (res.error){
@@ -62,7 +70,7 @@ export default class SLControls extends React.Component{
                 this.setState({error: interpolate(_('Invalid response from server: %(error)s'), { error }), loading: false});
             });
         }else{
-            this.props.sharePopup.setState({relShareLink: this.props.sharePopup.getRelShareLink()});
+            this.setShareLink(null);
             this.setState({useShortLink: !this.state.useShortLink});
         }
     }
@@ -121,7 +129,7 @@ export default class SLControls extends React.Component{
             }).done(res => {
                 if (res.success){
                     this.setState({useShortLink: false, shortId: ""});
-                    this.props.sharePopup.setState({relShareLink: this.props.sharePopup.getRelShareLink()});
+                    this.setShareLink(null);
                 }else if (res.error){
                     this.setState({error: res.error});
                 }else{

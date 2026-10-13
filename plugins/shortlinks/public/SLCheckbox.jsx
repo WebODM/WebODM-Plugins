@@ -24,6 +24,14 @@ export default class SLCheckbox extends React.Component{
         };
     }
 
+    setShareLink = (rel) => {
+        const sp = this.props.sharePopup;
+        if (!sp._slOrig) sp._slOrig = sp.getRelShareLink;
+        if (rel) sp.getRelShareLink = (opts = {}) => opts.iframe ? sp._slOrig(opts) : `/${rel}`;
+        else sp.getRelShareLink = sp._slOrig;
+        sp.setState({relShareLink: sp.getRelShareLink()});
+    }
+
     toggleShortLinks = (e) => {
         e.stopPropagation();
         if (!this.state.useShortLink && !this.state.loading){
@@ -42,7 +50,7 @@ export default class SLCheckbox extends React.Component{
 
                 const relShareLink = `s${linksTargetChar}${shortId}`;
 
-                if (shortId) this.props.sharePopup.setState({relShareLink});
+                if (shortId) this.setShareLink(relShareLink);
                 else this.setState({error: interpolate(_('Invalid response from server: %(error)s'), { error: JSON.stringify(res)})});
                 
                 this.setState({loading: false, useShortLink: !this.state.useShortLink});
@@ -50,7 +58,7 @@ export default class SLCheckbox extends React.Component{
                 this.setState({error: interpolate(_('Invalid response from server: %(error)s'), { error }), loading: false});
             });
         }else{
-            this.props.sharePopup.setState({relShareLink: this.props.sharePopup.getRelShareLink()});
+            this.setShareLink(null);
             this.setState({useShortLink: !this.state.useShortLink});
         }
     }
