@@ -67,10 +67,11 @@ print("Rebuilding...")
 uid_gid = "%s:%s" % (os.getuid(), os.getgid())
 cmd = [
     "docker", "run", "--rm",
-    "-v", build_dir + ":/webodm/coreplugins",
+    "-v", build_dir + ":/webodm/app/media/plugins",
+    "--tmpfs", "/webodm/coreplugins",
     "--entrypoint", "/bin/bash",
     image,
-    "-c", "python manage.py rebuildplugins; rc=$?; chown -R %s /webodm/coreplugins; exit $rc" % uid_gid,
+    "-c", "python manage.py rebuildplugins; rc=$?; chown -R %s /webodm/app/media/plugins; exit $rc" % uid_gid,
 ]
 
 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)

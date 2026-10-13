@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import FormDialog from "../../../../app/static/app/js/components/FormDialog";
+import FormDialog from "webodm/components/FormDialog";
 
 import IonField from "./IonField";
 import { ImplicitIonFetcher as IonFetcher } from "./Fetcher";
