@@ -38,6 +38,7 @@ for f in sorted(os.listdir(dist_dir)):
     prebuilt = f[:-4] + "-prebuilt.zip"
     if os.path.isfile(os.path.join(dist_dir, prebuilt)):
         meta["prebuilt_url"] = "/" + prebuilt
+        meta["prebuilt_sha256"] = sha256(os.path.join(dist_dir, prebuilt))
     plugins.append(meta)
     print("A\t" + f)
 
