@@ -28,10 +28,11 @@ for f in sorted(os.listdir(dist_dir)):
         continue
     path = os.path.join(dist_dir, f)
     try:
-        meta = read_manifest(path)
+        meta = {"id": f[:-4], **read_manifest(path)}
     except Exception as e:
         print("ERROR: %s: %s" % (f, e))
         sys.exit(1)
+    meta["id"] = f[:-4]
     meta["url"] = "/" + f
     meta["sha256"] = sha256(path)
     prebuilt = f[:-4] + "-prebuilt.zip"
