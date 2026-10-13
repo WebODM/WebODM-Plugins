@@ -101,21 +101,31 @@ print("Packaging...")
 
 os.makedirs(dist_dir)
 
+def zip_info(name, mode):
+    info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+    info.create_system = 3
+    info.external_attr = mode << 16
+    return info
+
 def package(p, prebuilt):
     src = os.path.join(build_dir, p)
     out = os.path.join(dist_dir, p + ("-prebuilt.zip" if prebuilt else ".zip"))
-    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+    with zipfile.ZipFile(out, "w") as z:
         for dirpath, dirnames, filenames in os.walk(src):
             rel = os.path.relpath(dirpath, build_dir)
             skip = {"node_modules", "__pycache__"}
             if not prebuilt and rel == os.path.join(p, "public"):
                 skip.add("build")
-            dirnames[:] = [d for d in dirnames if d not in skip]
-            z.write(dirpath, rel)
-            for f in filenames:
+            dirnames[:] = sorted(d for d in dirnames if d not in skip)
+            z.writestr(zip_info(rel + "/", 0o40755), b"")
+            for f in sorted(filenames):
                 if f.endswith(".pyc"):
                     continue
-                z.write(os.path.join(dirpath, f), os.path.join(rel, f))
+                path = os.path.join(dirpath, f)
+                info = zip_info(os.path.join(rel, f), 0o100755 if os.access(path, os.X_OK) else 0o100644)
+                info.compress_type = zipfile.ZIP_DEFLATED
+                with open(path, "rb") as fin, z.open(info, "w") as fout:
+                    shutil.copyfileobj(fin, fout, 1024 * 1024)
     return out
 
 with ThreadPoolExecutor(max_workers=os.cpu_count()) as ex:

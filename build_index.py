@@ -33,12 +33,12 @@ for f in sorted(os.listdir(dist_dir)):
         print("ERROR: %s: %s" % (f, e))
         sys.exit(1)
     meta["id"] = f[:-4]
-    meta["url"] = "/" + f
     meta["sha256"] = sha256(path)
+    meta["url"] = "/%s?v=%s" % (f, meta["sha256"][:16])
     prebuilt = f[:-4] + "-prebuilt.zip"
     if os.path.isfile(os.path.join(dist_dir, prebuilt)):
-        meta["prebuilt_url"] = "/" + prebuilt
         meta["prebuilt_sha256"] = sha256(os.path.join(dist_dir, prebuilt))
+        meta["prebuilt_url"] = "/%s?v=%s" % (prebuilt, meta["prebuilt_sha256"][:16])
     plugins.append(meta)
     print("A\t" + f)
 
