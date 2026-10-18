@@ -5,7 +5,7 @@ A set of instructions for machines to assist in building WebODM Plugins.
 Copy/paste this into your favorite agent:
 
 ```bash
-We need to build a WebODM plugin: follow the instructions on https://github.com/WebODM/WebODM-Plugins-Guidance for all you need to know to get started.
+We need to build a WebODM plugin: follow the instructions on https://github.com/WebODM/WebODM-Plugins/blob/main/guidance/index.md for all you need to know to get started.
 
 The plugin should [enter what you want to build here]
 ```
