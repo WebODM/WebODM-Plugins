@@ -38,7 +38,7 @@ You might need to restart WebODM in order for the plugin to be picked up.
 
 ### Verification
 
-Check this before continuing: the dev environment is setup OK if the startup log should include the line "INFO Registered [coreplugins.<plugin-name>.plugin]" and no errors related to the plugin.
+Check this before continuing: the dev environment is setup OK if the startup log should include the line "INFO Registered [coreplugins.plugin-name.plugin]" and no errors related to the plugin.
 
 ## Ask Questions
 
