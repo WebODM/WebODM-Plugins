@@ -3,6 +3,10 @@
         {
             "url": "https://github.com/pyarchinit/webodm-model-tools/releases/download/v1.0.51/webodm-model-tools.zip",
             "sha256": "d9987b65127f3b34d09ce38b24ce3728e0027c0fbf94a8231f9355b496a4f6ac"
+        },
+        {
+            "url": "https://github.com/pierotofy/webodm-blender-render/releases/download/v1.0.1/blender-render.zip",
+            "sha256": "220a033321881cbb9e0878201de30d4694ef611648581737a88a76aa914ca904"
         }
     ]
 }
