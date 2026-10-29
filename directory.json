@@ -9,8 +9,8 @@
             "sha256": "220a033321881cbb9e0878201de30d4694ef611648581737a88a76aa914ca904"
         },
         {
-            "url": "https://github.com/WinuxNomacs/webodm-geojson/releases/download/v1.1.0/geojson-1.1.0.zip",
-            "sha256": "e03624a7a2bb66d669da2f963b0c8fe6818ccfacc0a91c0690418c0fd17c4737"
+            "url": "https://github.com/WinuxNomacs/webodm-geojson/releases/download/v1.1.1/geojson-1.1.1.zip",
+            "sha256": "4af0ee8604a2af60e1661a50719200233c02df012e6e15c074a94097a27ffd4d"
         }
     ]
 }
