@@ -11,6 +11,10 @@
         {
             "url": "https://github.com/WinuxNomacs/webodm-geojson/releases/download/v1.1.1/geojson-1.1.1.zip",
             "sha256": "4af0ee8604a2af60e1661a50719200233c02df012e6e15c074a94097a27ffd4d"
+        },
+        {
+            "url": "https://github.com/WinuxNomacs/webodm-dji-thermal/releases/download/v1.0.0/dji-thermal-1.0.0.zip",
+            "sha256": "b0be4b7992692c460c709e43e274eb3bb1e400a9816e814a2b5e895cd734d57c"
         }
     ]
 }
