@@ -1,7 +1,7 @@
 import logging
 from django.dispatch import receiver
 from django.core.mail import send_mail
-from app.plugins.signals import task_completed, task_failed, task_removed
+from app.plugins.signals import task_completed, task_failed, task_removing
 from app.plugins.functions import get_current_plugin
 from . import email as notification
 from . import config
@@ -20,7 +20,7 @@ def handle_task_completed(sender, task_id, **kwargs):
     if config_data.get("notify_task_completed") == True:
         task = Task.objects.get(id=task_id)
         setting = Setting.objects.first()
-        notification_app_name = config_data['notification_app_name'] or settings.app_name
+        notification_app_name = config_data['notification_app_name'] or setting.app_name
 
         console_output = reverse_output(task.console.output())
         notification.send(
@@ -29,7 +29,7 @@ def handle_task_completed(sender, task_id, **kwargs):
             config_data
         )
 
-@receiver(task_removed)
+@receiver(task_removing)
 def handle_task_removed(sender, task_id, **kwargs):
     if get_current_plugin(only_active=True) is None:
         return
@@ -40,7 +40,7 @@ def handle_task_removed(sender, task_id, **kwargs):
     if config_data.get("notify_task_removed") == True:
         task = Task.objects.get(id=task_id)
         setting = Setting.objects.first()
-        notification_app_name = config_data['notification_app_name'] or settings.app_name
+        notification_app_name = config_data['notification_app_name'] or setting.app_name
         console_output = reverse_output(task.console.output())
         notification.send(
             f"{notification_app_name} - {task.project.name} Task removed", 
@@ -59,7 +59,7 @@ def handle_task_failed(sender, task_id, **kwargs):
     if config_data.get("notify_task_failed") == True:
         task = Task.objects.get(id=task_id)
         setting = Setting.objects.first()
-        notification_app_name = config_data['notification_app_name'] or settings.app_name
+        notification_app_name = config_data['notification_app_name'] or setting.app_name
         console_output = reverse_output(task.console.output())
         notification.send(
             f"{notification_app_name} - {task.project.name} Task Failed", 

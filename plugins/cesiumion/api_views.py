@@ -6,6 +6,7 @@ from os import path
 from enum import Enum
 from itertools import chain as iter_chain
 
+from app.geoutils import polygon_bbox
 from app.plugins.views import TaskView
 from app.plugins.worker import run_function_async
 from app.plugins.data_store import GlobalDataStore
@@ -13,7 +14,7 @@ from app.plugins import signals as plugin_signals
 
 from worker.celery import app
 from django.dispatch import receiver
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from rest_framework.fields import ChoiceField, CharField, JSONField
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -64,21 +65,21 @@ def is_asset_task(asset_meta):
     return asset_meta["upload"]["active"] or asset_meta["process"]["active"] or is_error
 
 
-def get_processing_assets(task_id):
+def get_dead_assets(task_id):
     ispc = app.control.inspect()
     ion_tasks = set()
     active = set()
     from uuid import UUID
 
     for wtask in iter_chain(*ispc.active().values(), *ispc.reserved().values()):
-        args = eval(wtask["args"])
-        if len(args) < 2:
+        args = wtask["args"]
+        if len(args) < 4 or args[1] != "upload_to_ion":
             continue
-        ion_tasks.add((str(args[0]), AssetType[args[1]]))
+        ion_tasks.add((str(args[2]), AssetType[args[3]]))
 
     for asset_type in AssetType:
         asset_info = get_asset_info(task_id, asset_type)
-        ion_task_id = (task_id, asset_type)
+        ion_task_id = (str(task_id), asset_type)
         if not is_asset_task(asset_info) or ion_task_id in ion_tasks:
             continue
         active.add(asset_type)
@@ -234,7 +235,7 @@ class ShareTaskView(TaskView):
         asset_path = task.get_asset_download_path(ASSET_TO_FILE[asset_type])
 
         # Skip already processing tasks
-        if asset_type not in get_processing_assets(task.id):
+        if not is_asset_task(get_asset_info(task.id, asset_type)):
             if asset_type == AssetType.TEXTURED_MODEL and "position" not in options:
                 value = task.ASSETS_MAP[ASSET_TO_FILE[asset_type]]
                 if isinstance(value, dict):
@@ -245,9 +246,9 @@ class ShareTaskView(TaskView):
                 
                 extent = None
                 if task.dsm_extent is not None:
-                    extent = task.dsm_extent.extent
+                    extent = polygon_bbox(task.dsm_extent)
                 if task.dtm_extent is not None:
-                    extent = task.dtm_extent.extent
+                    extent = polygon_bbox(task.dtm_extent)
                 if extent is None:
                     print(f"Unable to find task boundary: {task}")
                 else:
@@ -298,7 +299,7 @@ class RefreshIonTaskView(TaskView):
                 is_updated = True
 
         # dead task cleanup
-        for asset_type in get_processing_assets(task.id):
+        for asset_type in get_dead_assets(task.id):
             del_asset_info(task.id, asset_type)
             is_updated = True
 

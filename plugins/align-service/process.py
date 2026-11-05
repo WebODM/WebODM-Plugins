@@ -1,6 +1,5 @@
 import requests
 import logging
-import piexif
 
 from osgeo import ogr, osr
 from PIL import Image
@@ -16,11 +15,8 @@ out_ref.ImportFromEPSG(32718)
 logger = logging.getLogger('app.logger')
 
 def get_decimal_from_dms(dms, ref):
-    degrees = dms[0][0] / dms[0][1]
-    minutes = dms[1][0] / dms[1][1]
-    seconds = dms[2][0] / dms[2][1]
-    decimal = degrees + minutes / 60 + seconds / 3600
-    if ref in [b'S', b'W']:
+    decimal = float(dms[0]) + float(dms[1]) / 60 + float(dms[2]) / 3600
+    if ref in ['S', 'W']:
         decimal = -decimal
     return decimal
 
@@ -82,15 +78,14 @@ def get_coords_from_images(images, task):
         else:
             img = Image.open(task.get_image_path(image))
             try:
-                exif_dict = piexif.load(img.info['exif'])
-                gps_data = exif_dict.get('GPS', {})
+                gps_data = img.getexif().get_ifd(0x8825)
 
                 if gps_data:
-                    latitude = get_decimal_from_dms(gps_data.get(piexif.GPSIFD.GPSLatitude),
-                                                    gps_data.get(piexif.GPSIFD.GPSLatitudeRef))
+                    latitude = get_decimal_from_dms(gps_data.get(2),
+                                                    gps_data.get(1))
 
-                    longitude = get_decimal_from_dms(gps_data.get(piexif.GPSIFD.GPSLongitude),
-                                                     gps_data.get(piexif.GPSIFD.GPSLongitudeRef))
+                    longitude = get_decimal_from_dms(gps_data.get(4),
+                                                     gps_data.get(3))
                     coords.append([longitude, latitude])
             except Exception as e:
                 logger.error(f"Error getting GPS data from image {image}: {e}")

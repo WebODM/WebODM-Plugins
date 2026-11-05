@@ -209,6 +209,7 @@ class ImportDatasetTaskView(TaskView):
 
 def import_files(task_id, carrier):
     import requests
+    from pyodx.exceptions import NodeServerError
     from app import models
     from app.plugins import logger
     from app.security import path_traversal_check
