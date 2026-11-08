@@ -15,6 +15,10 @@
         {
             "url": "https://github.com/WinuxNomacs/webodm-dji-thermal/releases/download/v1.1.0/dji-thermal-1.1.0.zip",
             "sha256": "0c69403730350b7d8cb8f1d26f86a194735ac47ce8a2397127f9bdd97b24bc6b"
+        },
+        {
+            "url": "https://github.com/pierotofy/Doom-WebODM/releases/download/v1.0.0/doom.zip",
+            "sha256": "ab85c35a8936212f4a62040b10f3bd0813ec8b88e048db307902ab4af07dadda"
         }
     ]
 }
