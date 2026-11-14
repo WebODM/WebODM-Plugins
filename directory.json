@@ -25,8 +25,8 @@
             "sha256": "ec05022817074cfa68ab2225955bd47861b85d709e94c0070835b3a469ba11b7"
         },
         {
-            "url": "https://github.com/pierotofy/webodm-crowd-missions/releases/download/v0.8.0/crowd-missions.zip",
-            "sha256": "a01bfee6c24a77427bdc4ca48d8def89eb0058b8dfa12c45ab3efa5bbe618bd5"
+            "url": "https://github.com/pierotofy/webodm-crowd-missions/releases/download/v0.8.1/crowd-missions.zip",
+            "sha256": "4bc799792fef604c54769347e19f03a5cb3fc5438de1aebaddb56a508ba039cd"
         }
     ]
 }
