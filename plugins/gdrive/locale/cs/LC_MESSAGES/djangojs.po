@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-16 02:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+#: public/GDriveSource.jsx:31
+#, python-format
+msgid "Cannot load %(url)s"
+msgstr "Nelze načíst %(url)s"
+
+#: public/GDriveSource.jsx:60
+#, python-format
+msgid "Google Drive request failed (%(status)s)"
+msgstr "Požadavek na Google Drive selhal (%(status)s)"
+
+#: public/GDriveSource.jsx:127
+msgid "Cannot retrieve processing nodes"
+msgstr "Nelze získat zpracovatelské uzly"
+
+#: public/GDriveSource.jsx:191
+msgid ""
+"Cannot open the Google sign-in window. Please allow popups for this site."
+msgstr ""
+"Nelze otevřít okno přihlášení Google. Povolte prosím vyskakovací okna pro "
+"tento web."
+
+#: public/GDriveSource.jsx:238
+msgid "Select images, GCP files or a folder"
+msgstr "Vyberte snímky, soubory GCP nebo složku"
+
+#: public/GDriveSource.jsx:270
+#, python-format
+msgid ""
+"Cannot read the files in %(folder)s. Open the folder in the Google Drive "
+"window and select its files instead."
+msgstr ""
+"Nelze přečíst soubory ve složce %(folder)s. Otevřete složku v okně Google "
+"Drive a vyberte místo toho její soubory."
+
+#: public/GDriveSource.jsx:275
+msgid ""
+"None of the selected files can be processed. Select images and GCP files."
+msgstr ""
+"Žádný z vybraných souborů nelze zpracovat. Vyberte snímky a soubory GCP."
+
+#: public/GDriveSource.jsx:278
+#, python-format
+msgid ""
+"You selected %(count)s files, but you can only process at most %(max)s "
+"images."
+msgstr ""
+"Vybrali jste %(count)s souborů, ale zpracovat lze nejvýše %(max)s snímků."
+
+#: public/GDriveSource.jsx:336 public/GDriveSource.jsx:351
+msgid "Cannot import files from Google Drive"
+msgstr "Nelze importovat soubory z Google Drive"
+
+#: public/GDriveSource.jsx:353
+msgid "Google sign-in was canceled"
+msgstr "Přihlášení Google bylo zrušeno"
+
+#: public/GDriveSource.jsx:367
+msgid "From Google Drive"
+msgstr "Z Google Drive"
+
+#: public/GDriveSource.jsx:371
+msgid "Loading files from Google Drive..."
+msgstr "Načítání souborů z Google Drive..."

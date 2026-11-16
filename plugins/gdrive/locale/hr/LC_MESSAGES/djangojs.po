@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-16 02:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+#: public/GDriveSource.jsx:31
+#, python-format
+msgid "Cannot load %(url)s"
+msgstr "Nije moguće učitati %(url)s"
+
+#: public/GDriveSource.jsx:60
+#, python-format
+msgid "Google Drive request failed (%(status)s)"
+msgstr "Zahtjev prema Google Driveu nije uspio (%(status)s)"
+
+#: public/GDriveSource.jsx:127
+msgid "Cannot retrieve processing nodes"
+msgstr "Nije moguće dohvatiti čvorove za obradu"
+
+#: public/GDriveSource.jsx:191
+msgid ""
+"Cannot open the Google sign-in window. Please allow popups for this site."
+msgstr ""
+"Nije moguće otvoriti prozor za Google prijavu. Dopustite skočne prozore za "
+"ovu stranicu."
+
+#: public/GDriveSource.jsx:238
+msgid "Select images, GCP files or a folder"
+msgstr "Odaberite slike, GCP datoteke ili mapu"
+
+#: public/GDriveSource.jsx:270
+#, python-format
+msgid ""
+"Cannot read the files in %(folder)s. Open the folder in the Google Drive "
+"window and select its files instead."
+msgstr ""
+"Nije moguće pročitati datoteke u %(folder)s. Otvorite mapu u prozoru Google "
+"Drivea i umjesto toga odaberite njezine datoteke."
+
+#: public/GDriveSource.jsx:275
+msgid ""
+"None of the selected files can be processed. Select images and GCP files."
+msgstr ""
+"Nijedna od odabranih datoteka ne može se obraditi. Odaberite slike i GCP "
+"datoteke."
+
+#: public/GDriveSource.jsx:278
+#, python-format
+msgid ""
+"You selected %(count)s files, but you can only process at most %(max)s "
+"images."
+msgstr ""
+"Odabrali ste %(count)s datoteka, ali možete obraditi najviše %(max)s slika."
+
+#: public/GDriveSource.jsx:336 public/GDriveSource.jsx:351
+msgid "Cannot import files from Google Drive"
+msgstr "Nije moguće uvesti datoteke s Google Drivea"
+
+#: public/GDriveSource.jsx:353
+msgid "Google sign-in was canceled"
+msgstr "Google prijava je otkazana"
+
+#: public/GDriveSource.jsx:367
+msgid "From Google Drive"
+msgstr "S Google Drivea"
+
+#: public/GDriveSource.jsx:371
+msgid "Loading files from Google Drive..."
+msgstr "Učitavanje datoteka s Google Drivea..."

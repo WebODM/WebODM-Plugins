@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-16 02:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: public/GDriveSource.jsx:31
+#, python-format
+msgid "Cannot load %(url)s"
+msgstr "Não é possível carregar %(url)s"
+
+#: public/GDriveSource.jsx:60
+#, python-format
+msgid "Google Drive request failed (%(status)s)"
+msgstr "Falha na solicitação ao Google Drive (%(status)s)"
+
+#: public/GDriveSource.jsx:127
+msgid "Cannot retrieve processing nodes"
+msgstr "Não é possível obter os nós de processamento"
+
+#: public/GDriveSource.jsx:191
+msgid ""
+"Cannot open the Google sign-in window. Please allow popups for this site."
+msgstr ""
+"Não é possível abrir a janela de login do Google. Permita pop-ups para este "
+"site."
+
+#: public/GDriveSource.jsx:238
+msgid "Select images, GCP files or a folder"
+msgstr "Selecione imagens, arquivos GCP ou uma pasta"
+
+#: public/GDriveSource.jsx:270
+#, python-format
+msgid ""
+"Cannot read the files in %(folder)s. Open the folder in the Google Drive "
+"window and select its files instead."
+msgstr ""
+"Não é possível ler os arquivos em %(folder)s. Abra a pasta na janela do "
+"Google Drive e selecione os arquivos dela."
+
+#: public/GDriveSource.jsx:275
+msgid ""
+"None of the selected files can be processed. Select images and GCP files."
+msgstr ""
+"Nenhum dos arquivos selecionados pode ser processado. Selecione imagens e "
+"arquivos GCP."
+
+#: public/GDriveSource.jsx:278
+#, python-format
+msgid ""
+"You selected %(count)s files, but you can only process at most %(max)s "
+"images."
+msgstr ""
+"Você selecionou %(count)s arquivos, mas só pode processar no máximo %(max)s "
+"imagens."
+
+#: public/GDriveSource.jsx:336 public/GDriveSource.jsx:351
+msgid "Cannot import files from Google Drive"
+msgstr "Não é possível importar arquivos do Google Drive"
+
+#: public/GDriveSource.jsx:353
+msgid "Google sign-in was canceled"
+msgstr "O login do Google foi cancelado"
+
+#: public/GDriveSource.jsx:367
+msgid "From Google Drive"
+msgstr "Do Google Drive"
+
+#: public/GDriveSource.jsx:371
+msgid "Loading files from Google Drive..."
+msgstr "Carregando arquivos do Google Drive..."

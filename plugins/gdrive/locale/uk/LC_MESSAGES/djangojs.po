@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-16 02:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+#: public/GDriveSource.jsx:31
+#, python-format
+msgid "Cannot load %(url)s"
+msgstr "Не вдалося завантажити %(url)s"
+
+#: public/GDriveSource.jsx:60
+#, python-format
+msgid "Google Drive request failed (%(status)s)"
+msgstr "Помилка запиту до Google Drive (%(status)s)"
+
+#: public/GDriveSource.jsx:127
+msgid "Cannot retrieve processing nodes"
+msgstr "Не вдалося отримати вузли обробки"
+
+#: public/GDriveSource.jsx:191
+msgid ""
+"Cannot open the Google sign-in window. Please allow popups for this site."
+msgstr ""
+"Не вдалося відкрити вікно входу Google. Дозвольте спливні вікна для цього "
+"сайту."
+
+#: public/GDriveSource.jsx:238
+msgid "Select images, GCP files or a folder"
+msgstr "Виберіть зображення, файли GCP або теку"
+
+#: public/GDriveSource.jsx:270
+#, python-format
+msgid ""
+"Cannot read the files in %(folder)s. Open the folder in the Google Drive "
+"window and select its files instead."
+msgstr ""
+"Не вдалося прочитати файли в %(folder)s. Відкрийте теку у вікні Google Drive "
+"і виберіть її файли."
+
+#: public/GDriveSource.jsx:275
+msgid ""
+"None of the selected files can be processed. Select images and GCP files."
+msgstr ""
+"Жоден із вибраних файлів не можна обробити. Виберіть зображення та файли GCP."
+
+#: public/GDriveSource.jsx:278
+#, python-format
+msgid ""
+"You selected %(count)s files, but you can only process at most %(max)s "
+"images."
+msgstr ""
+"Ви вибрали файлів: %(count)s, але можна обробити щонайбільше %(max)s "
+"зображень."
+
+#: public/GDriveSource.jsx:336 public/GDriveSource.jsx:351
+msgid "Cannot import files from Google Drive"
+msgstr "Не вдалося імпортувати файли з Google Drive"
+
+#: public/GDriveSource.jsx:353
+msgid "Google sign-in was canceled"
+msgstr "Вхід у Google скасовано"
+
+#: public/GDriveSource.jsx:367
+msgid "From Google Drive"
+msgstr "З Google Drive"
+
+#: public/GDriveSource.jsx:371
+msgid "Loading files from Google Drive..."
+msgstr "Завантаження файлів з Google Drive..."

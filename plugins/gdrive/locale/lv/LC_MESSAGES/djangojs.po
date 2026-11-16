@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-16 02:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+#: public/GDriveSource.jsx:31
+#, python-format
+msgid "Cannot load %(url)s"
+msgstr "Nevar ielādēt %(url)s"
+
+#: public/GDriveSource.jsx:60
+#, python-format
+msgid "Google Drive request failed (%(status)s)"
+msgstr "Google Drive pieprasījums neizdevās (%(status)s)"
+
+#: public/GDriveSource.jsx:127
+msgid "Cannot retrieve processing nodes"
+msgstr "Nevar iegūt apstrādes mezglus"
+
+#: public/GDriveSource.jsx:191
+msgid ""
+"Cannot open the Google sign-in window. Please allow popups for this site."
+msgstr ""
+"Nevar atvērt Google pierakstīšanās logu. Lūdzu, atļaujiet uznirstošos logus "
+"šai vietnei."
+
+#: public/GDriveSource.jsx:238
+msgid "Select images, GCP files or a folder"
+msgstr "Izvēlieties attēlus, GCP failus vai mapi"
+
+#: public/GDriveSource.jsx:270
+#, python-format
+msgid ""
+"Cannot read the files in %(folder)s. Open the folder in the Google Drive "
+"window and select its files instead."
+msgstr ""
+"Nevar nolasīt failus mapē %(folder)s. Atveriet mapi Google Drive logā un "
+"izvēlieties tās failus."
+
+#: public/GDriveSource.jsx:275
+msgid ""
+"None of the selected files can be processed. Select images and GCP files."
+msgstr ""
+"Nevienu no izvēlētajiem failiem nevar apstrādāt. Izvēlieties attēlus un GCP "
+"failus."
+
+#: public/GDriveSource.jsx:278
+#, python-format
+msgid ""
+"You selected %(count)s files, but you can only process at most %(max)s "
+"images."
+msgstr ""
+"Jūs izvēlējāties %(count)s failus, bet var apstrādāt ne vairāk kā %(max)s "
+"attēlus."
+
+#: public/GDriveSource.jsx:336 public/GDriveSource.jsx:351
+msgid "Cannot import files from Google Drive"
+msgstr "Nevar importēt failus no Google Drive"
+
+#: public/GDriveSource.jsx:353
+msgid "Google sign-in was canceled"
+msgstr "Google pierakstīšanās tika atcelta"
+
+#: public/GDriveSource.jsx:367
+msgid "From Google Drive"
+msgstr "No Google Drive"
+
+#: public/GDriveSource.jsx:371
+msgid "Loading files from Google Drive..."
+msgstr "Ielādē failus no Google Drive..."

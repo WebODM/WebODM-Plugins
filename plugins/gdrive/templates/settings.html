@@ -1,0 +1,22 @@
+{% extends "app/plugins/templates/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h3>{% trans 'Google Drive' %}</h3>
+<p>{% trans 'Allow users to select images from Google Drive when creating new tasks. Create the credentials below in the Google Cloud Console:' %}</p>
+<ol>
+    <li>{% trans 'Create a project and enable the <b>Google Drive API</b> and the <b>Google Picker API</b>.' %}</li>
+    <li>{% trans 'Open <b>APIs & Services → OAuth consent screen</b> (Google Auth Platform). Fill in <b>Branding</b>, then in <b>Audience</b> add your users as test users or publish the app.' %}</li>
+    <li>{% trans 'In <b>Data Access</b>, click <b>Add or remove scopes</b> and add:' %} <code>https://www.googleapis.com/auth/drive.file</code></li>
+    <li>{% trans 'In <b>Clients</b>, create a client of type <b>Web application</b> and add this address to the Authorized JavaScript origins:' %} <code>{{ origin }}</code></li>
+    <li>{% trans 'In <b>APIs & Services → Credentials</b>, click <b>Create credentials → API key</b>. Under <b>API restrictions</b>, choose <b>Restrict key</b> and select the <b>Google Drive API</b> and the <b>Google Picker API</b>. Optionally, under <b>Application restrictions</b>, choose <b>Websites</b> and add:' %} <code>{{ origin }}/*</code></li>
+</ol>
+<p>{% trans 'Google only accepts HTTPS addresses or http://localhost as JavaScript origins.' %}</p>
+<p><a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener noreferrer" class="btn btn-default"><i class="fa fa-external-link-alt fa-fw"></i> {% trans 'Open Google Cloud Console' %}</a></p>
+
+<form action="" method="post" style="max-width: 640px;">
+    {% csrf_token %}
+    {% include "app/plugins/templates/form.html" %}
+    <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> {% trans 'Save' %}</button>
+</form>
+{% endblock %}

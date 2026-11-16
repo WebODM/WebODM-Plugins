@@ -1,0 +1,13 @@
+{
+	"name": "Google Drive",
+	"webodmMinVersion": "4.0.1",
+	"description": "Create tasks by selecting images directly from Google Drive",
+	"version": "1.0.0",
+	"author": "Piero Toffanin",
+	"email": "pt@masseranolabs.com",
+	"repository": "https://github.com/WebODM/WebODM",
+	"tags": ["webodm", "google", "drive", "import"],
+	"homepage": "https://github.com/WebODM/WebODM",
+	"experimental": false,
+	"deprecated": false
+}
