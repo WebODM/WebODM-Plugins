@@ -27,6 +27,10 @@
         {
             "url": "https://github.com/pierotofy/webodm-crowd-missions/releases/download/v0.8.1/crowd-missions.zip",
             "sha256": "4bc799792fef604c54769347e19f03a5cb3fc5438de1aebaddb56a508ba039cd"
+        },
+        {
+            "url": "https://github.com/WinuxNomacs/webodm-splatme/releases/download/v0.2.0/splatme-0.2.0.zip",
+            "sha256": "d2e6443eb95fde59f5196643848afd3b63c843b28333ac761c365233208221a4"
         }
     ]
 }
