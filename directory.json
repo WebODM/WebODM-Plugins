@@ -31,6 +31,10 @@
         {
             "url": "https://github.com/WinuxNomacs/webodm-splatme/releases/download/v0.2.0/splatme-0.2.0.zip",
             "sha256": "d2e6443eb95fde59f5196643848afd3b63c843b28333ac761c365233208221a4"
+        },
+        {
+            "url": "https://gitlab.com/sarkoa-public/sarkoa-qgis-plugin/-/raw/webodm-v0.1.1/webodm/releases/0.1.1/sarkoa-webodm-0.1.1.zip",
+            "sha256": "011db5490ccaefe4246fb67e8d2a36c73706323905295b2a86607df9eacc4a89"
         }
     ]
 }
