@@ -35,6 +35,10 @@
         {
             "url": "https://gitlab.com/sarkoa-public/sarkoa-webodm-plugin/-/raw/v0.1.1/releases/0.1.1/sarkoa-webodm-0.1.1.zip",
             "sha256": "011db5490ccaefe4246fb67e8d2a36c73706323905295b2a86607df9eacc4a89"
+        },
+        {
+            "url": "https://github.com/pierotofy/webodm-mission-planner/releases/download/v0.6.1/mission-planner.zip",
+            "sha256": "55a980481954d8673b637800cea0930d3fdf98d117fdcea9e18d94b8f217e7ce"
         }
     ]
 }
