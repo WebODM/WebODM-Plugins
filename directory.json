@@ -39,6 +39,10 @@
         {
             "url": "https://github.com/pierotofy/webodm-mission-planner/releases/download/v0.6.1/mission-planner.zip",
             "sha256": "55a980481954d8673b637800cea0930d3fdf98d117fdcea9e18d94b8f217e7ce"
+        },
+        {
+            "url": "https://github.com/WinuxNomacs/webodm-dji-mission-planner/releases/download/v2.1.0/mission_planner-2.1.0.zip",
+            "sha256": "1679b723ad371123605336d4800f633e8f1c12a6597057e2923ae9b0627c57ea"
         }
     ]
 }
